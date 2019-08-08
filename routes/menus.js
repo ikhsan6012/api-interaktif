@@ -27,4 +27,16 @@ router.post('/add', async (req, res) => {
 	}
 })
 
+// ---------- DELETE METHOD ---------- //
+router.delete('/delete/:menuId', async (req, res) => {
+	try {
+		const { menuId } = req.params
+		if(!menuId) throw Error({ errmsg: 'Id Menu Diperlukan...' })
+		const deletedMenu = await MenuModel.findByIdAndDelete(menuId)
+		res.json(deletedMenu)
+	} catch (err) {
+		res.status(405).json(err)		
+	}
+})
+
 module.exports = router

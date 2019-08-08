@@ -28,15 +28,7 @@ router.get('/', async (req, res) => {
 router.post('/add', async (req, res) => {
 	try {
 		const { title, body, menu } = req.body
-		console.log(title)
 		if(!title || !body || !menu) throw Error({ errmsg: 'Data Tidak Lengkap...' })
-		// if(!body.menu) throw Error({ errmsg: 'Menu Id Diperlukan...' })
-		// const data = {}
-		// const keys = Object.keys(body)
-		// for(let key of keys) {
-		// 	if(!key.match(/menu|title|body/)) continue
-		// 	data[key] = body[key]
-		// }
 		const newContent = new ContentModel({ title, body, menu })
 		const content = await newContent.save()
 		res.json(content)

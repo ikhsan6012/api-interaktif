@@ -19,4 +19,10 @@ const menuModel = new Schema({
 	}]
 })
 
+menuModel.post('findOneAndDelete', async (menu, next) => {
+	const ContentModel = require('./contentModel')
+	await ContentModel.deleteMany({ menu: menu.id })
+	next()
+})
+
 module.exports = mongoose.model('Menu', menuModel)
